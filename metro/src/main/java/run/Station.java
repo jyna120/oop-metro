@@ -2,16 +2,16 @@ package run;
 
 import controller.Charger;
 import controller.Gate;
-import model.vo.User;
 import model.vo.card.Card;
+import repository.UserRepository;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Station {
     public static void main(String[] args) {
-        User user = new User();
-        List<Card> userList = user.saveUser();
+        UserRepository userRepository = new UserRepository();
+        List<Card> userList = userRepository.saveUser();
 
         Scanner sc = new Scanner(System.in);
         Gate gate = new Gate();
@@ -19,7 +19,7 @@ public class Station {
 
         System.out.print("ID를 입력하세요 : ");
         int userId = sc.nextInt();
-        System.out.println("1. 지하철 이용 / 2. 충전 : ");
+        System.out.println("1. 지하철 승차 / 2. 충전 : ");
         int selected = sc.nextInt();
 
         switch (selected) {
