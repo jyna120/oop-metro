@@ -30,7 +30,7 @@ public class Station {
         int selected = sc.nextInt();
 
         switch (selected) {
-            case 1 : gate.menu(); break;
+            case 1 : gate.menu(userList.get(userId)); break;
             case 2 :
                 charger.menu(userList.get(userId));
         }
