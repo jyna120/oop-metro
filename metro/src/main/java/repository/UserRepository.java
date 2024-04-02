@@ -18,6 +18,6 @@ public class UserRepository {
         cardList.add(new Card(2, "박수빈", 25, "deferred", new DeferredCard()));
         cardList.add(new Card(3, "김동현", 35, "deferred", new DeferredCard(LocalDate.of(2024,3,15), 50000)));
 
-        return cardList;
+        return userList;
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Station {
+    public static int userId; // 입력받은 사용자의 id
+
     public static void main(String[] args) {
         Station station = new Station();
         station.userMenu();
