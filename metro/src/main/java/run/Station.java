@@ -8,7 +8,7 @@ import model.vo.card.Card;
 import java.util.List;
 import java.util.Scanner;
 
-public class Stationgit {
+public class Station {
     public static void main(String[] args) {
         User user = new User();
         List<Card> userList = user.saveUser();
