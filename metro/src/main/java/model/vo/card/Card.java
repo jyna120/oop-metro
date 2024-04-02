@@ -5,48 +5,50 @@ import model.vo.User;
 import java.util.Arrays;
 
 public class Card extends User {
-    ClimateCard[] climateCards = new ClimateCard[3];
-    PrepaidCard[] prepaidCards = new PrepaidCard[3];
-    DeferredCard[] deferredCards = new DeferredCard[3];
+    ClimateCard climateCard = new ClimateCard();
+    PrepaidCard prepaidCard = new PrepaidCard();
+    DeferredCard deferredCard = new DeferredCard();
 
-    public Card() {}
-    public Card(int userId, String name, int age, String card) {
+    public Card(ClimateCard climateCard) {
+        this.climateCard = climateCard;
+    }
+
+    public Card(int userId, String name, int age, String card, ClimateCard climateCard) {
         super(userId, name, age, card);
-        if (card.equals("climate")) {
-            this.climateCards[userId] = new ClimateCard(userId, name, age, card);
-            this.prepaidCards[userId] = null;
-            this.deferredCards[userId] = null;
-        }
-        if (card.equals("prepaid")) {
-            this.climateCards[userId] = null;
-            this.prepaidCards[userId] = new PrepaidCard(userId, name, age, card);
-            this.deferredCards[userId] = null;
-        }
-        if (card.equals("deferred")) {
-            this.climateCards[userId] = null;
-            this.prepaidCards[userId] = null;
-            this.deferredCards[userId] = new DeferredCard(userId, name, age, card);
-        }
+        this.climateCard = climateCard;
     }
 
-    public ClimateCard[] getClimateCards() {
-        return climateCards;
+    public Card(int userId, String name, int age, String card, PrepaidCard prepaidCard) {
+        super(userId, name, age, card);
+        this.prepaidCard = prepaidCard;
     }
 
-    public PrepaidCard[] getPrepaidCards() {
-        return prepaidCards;
+    public Card(int userId, String name, int age, String card, DeferredCard deferredCard) {
+        super(userId, name, age, card);
+        this.deferredCard = deferredCard;
     }
 
-    public DeferredCard[] getDeferredCards() {
-        return deferredCards;
+    public ClimateCard getClimateCard() {
+        return climateCard;
     }
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "climateCards=" + Arrays.toString(climateCards) +
-                ", prepaidCards=" + Arrays.toString(prepaidCards) +
-                ", deferredCards=" + Arrays.toString(deferredCards) +
-                '}';
+    public void setClimateCard(ClimateCard climateCard) {
+        this.climateCard = climateCard;
+    }
+
+    public PrepaidCard getPrepaidCard() {
+        return prepaidCard;
+    }
+
+    public void setPrepaidCard(PrepaidCard prepaidCard) {
+        this.prepaidCard = prepaidCard;
+    }
+
+    public DeferredCard getDeferredCard() {
+        return deferredCard;
+    }
+
+    public void setDeferredCard(DeferredCard deferredCard) {
+        this.deferredCard = deferredCard;
     }
 }

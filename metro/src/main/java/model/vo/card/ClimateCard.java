@@ -6,37 +6,52 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ClimateCard extends User {
+public class ClimateCard {
     private LocalDate begin;
     private LocalDate end;
-    private boolean charged = false;
+    private boolean valid = false;
 
-    public ClimateCard() {}
-    public ClimateCard(int userId, String name, int age, String card) {
-        super(userId, name, age, card);
+    public ClimateCard() {
         this.begin = null;
         this.end = null;
-        this.charged = false;
+        this.valid = false;
+    }
+
+    public ClimateCard(LocalDate begin, LocalDate end) {
+        this.begin = begin;
+        this.end = this.begin.plusMonths(1);
+        checkValid();
     }
 
     public void chargeClimate() {
         Scanner sc = new Scanner(System.in);
         System.out.println("시작일을 입력하세요. (yyyyMMdd)");
         String begin = sc.next();
-        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
-        String end = sc.next();
-        System.out.println("62000원을 결제합니다.");
+//        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
+//        String end = sc.next();
 
-        this.setBegin(LocalDate.parse(begin, DateTimeFormatter.ofPattern("yyyyMMdd")));
-        this.setEnd(LocalDate.parse(end, DateTimeFormatter.ofPattern("yyyyMMdd")));
-        this.setCharged(true);
+        LocalDate userBegin = LocalDate.parse(begin, DateTimeFormatter.ofPattern("yyyyMMdd"));
+        LocalDate userEnd = userBegin.plusMonths(1);
 
-        if (getEnd().isAfter(LocalDate.now())) {
-            this.charged = true;
-            System.out.println("유효한 카드입니다.");
+//        this.setCharged(true);
+
+        if ((userBegin.isEqual(LocalDate.now()) || userBegin.isBefore(LocalDate.now())) && userEnd.isAfter(LocalDate.now())) {
+            this.begin = userBegin;
+            this.end = userEnd;
+            this.valid = true;
+            System.out.println("유효기간 : " + this.begin + "~" + this.end);
+            System.out.println("62000원을 결제합니다.");
         } else {
-            this.charged = false;
-            System.out.println("이 카드는 만료되었습니다.");
+            this.valid = false;
+            System.out.println("올바른 기간설정이 아닙니다.");
+        }
+    }
+
+    public void checkValid() {
+        if ((this.begin.isEqual(LocalDate.now()) || this.begin.isBefore(LocalDate.now())) && this.end.isAfter(LocalDate.now())) {
+            this.valid = true;
+        } else {
+            this.valid = false;
         }
     }
 
@@ -56,12 +71,12 @@ public class ClimateCard extends User {
         this.end = end;
     }
 
-    public boolean isCharged() {
-        return charged;
+    public boolean isValid() {
+        return valid;
     }
 
-    public void setCharged(boolean charged) {
-        this.charged = charged;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     @Override
@@ -69,7 +84,7 @@ public class ClimateCard extends User {
         return "ClimateCard{" +
                 "begin=" + begin +
                 ", end=" + end +
-                ", charged=" + charged +
+                ", valid=" + valid +
                 '}';
     }
 }
