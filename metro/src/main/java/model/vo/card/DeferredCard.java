@@ -1,10 +1,12 @@
 package model.vo.card;
 
+import model.vo.User;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class DeferredCard extends Card{
+public class DeferredCard extends User {
     private LocalDate begin;
     private LocalDate end;
     private int expense;

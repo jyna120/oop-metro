@@ -1,8 +1,10 @@
 package model.vo.card;
 
+import model.vo.User;
+
 import java.util.Scanner;
 
-public class PrepaidCard extends Card{
+public class PrepaidCard extends User {
     private int balance = 0;
 
     public PrepaidCard() {}

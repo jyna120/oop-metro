@@ -1,10 +1,12 @@
 package model.vo.card;
 
+import model.vo.User;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ClimateCard extends Card{
+public class ClimateCard extends User {
     private LocalDate begin;
     private LocalDate end;
     private boolean charged = false;
