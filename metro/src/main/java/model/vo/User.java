@@ -7,8 +7,7 @@ public class User {
     private String card;
     private int price;
 
-    public User() {
-    }
+    public User() {}
 
     public User(int userId, String name, int age, String card) {
         this.userId = userId;
@@ -68,7 +67,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserRepository{" +
+        return "User{" +
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", age=" + age +
