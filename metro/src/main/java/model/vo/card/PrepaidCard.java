@@ -4,12 +4,13 @@ import model.vo.User;
 
 import java.util.Scanner;
 
-public class PrepaidCard extends User {
+public class PrepaidCard {
     private int balance = 0;
 
     public PrepaidCard() {}
-    public PrepaidCard(int userId, String name, int age, String card) {
-        super(userId, name, age, card);
+
+    public PrepaidCard(int balance) {
+        this.balance = balance;
     }
 
     public void chargePrepaid() {

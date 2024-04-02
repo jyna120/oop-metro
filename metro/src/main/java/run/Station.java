@@ -16,7 +16,7 @@ public class Station {
 
     public void userMenu() {
         UserRepository userRepository = new UserRepository();
-        List<Card> userList = userRepository.saveUser();
+        List<Card> userList = userRepository.savedUser();
 
         Scanner sc = new Scanner(System.in);
         Gate gate = new Gate();
@@ -30,7 +30,7 @@ public class Station {
         switch (selected) {
             case 1 : gate.menu(); break;
             case 2 :
-                charger.menu(userList.get(userId), userId);
+                charger.menu(userList.get(userId));
         }
     }
 }
