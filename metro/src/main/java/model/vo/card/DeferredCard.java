@@ -21,19 +21,27 @@ public class DeferredCard extends User {
 
     public void chargeDeferred() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
+        System.out.println("시작일을 입력하세요. (yyyyMMdd)");
         String begin = sc.next();
-        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
-        String end = sc.next();
+//        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
+//        String end = sc.next();
 
-        this.setBegin(LocalDate.parse(begin, DateTimeFormatter.ofPattern("yyyyMMdd")));
-        this.setEnd(LocalDate.parse(end, DateTimeFormatter.ofPattern("yyyyMMdd")));
+        this.begin = LocalDate.parse(begin, DateTimeFormatter.ofPattern("yyyyMMdd"));
+        this.end = this.begin.plusMonths(1);
 
-        if (getBegin().isBefore(LocalDate.now()) && getEnd().isAfter(LocalDate.now())) {
-            System.out.println("유효한 카드입니다.");
+//        this.setCharged(true);
+
+        if (this.end.isBefore(LocalDate.now())) {
+            System.out.println("올바른 기간설정이 아닙니다.");
         } else {
+            System.out.println("자동결제일은 " + this.end + " 입니다.");
+        }
+    }
+
+    public void checkValid() {
+        if (this.end.isEqual(LocalDate.now().plusDays(1))) {
+            this.begin = this.end.plusDays(1);
             this.expense = 0;
-            System.out.println("이 카드는 만료되었습니다.");
         }
     }
 

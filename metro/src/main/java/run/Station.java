@@ -31,14 +31,6 @@ public class Station {
             case 1 : gate.menu(); break;
             case 2 :
                 charger.menu(userList.get(userId), userId);
-                System.out.println(userList.get(userId).getName() +"님의 카드현황 입니다.");
-                if (userList.get(userId).getCard().equals("climate")) {
-                    System.out.println(userList.get(userId).getClimateCards()[userId]);
-                } else if (userList.get(userId).getCard().equals("prepaid")) {
-                    System.out.println(userList.get(userId).getPrepaidCards()[userId]);
-                } else if (userList.get(userId).getCard().equals("deferred")) {
-                    System.out.println(userList.get(userId).getDeferredCards()[userId]);
-                }
         }
     }
 }
