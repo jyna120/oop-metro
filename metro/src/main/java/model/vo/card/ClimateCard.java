@@ -9,6 +9,7 @@ public class ClimateCard extends Card{
     private LocalDate end;
     private boolean charged = false;
 
+    public ClimateCard() {}
     public ClimateCard(int userId, String name, int age, String card) {
         super(userId, name, age, card);
         this.begin = null;

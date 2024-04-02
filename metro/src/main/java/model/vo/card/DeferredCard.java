@@ -9,6 +9,7 @@ public class DeferredCard extends Card{
     private LocalDate end;
     private int expense;
 
+    public DeferredCard() {}
     public DeferredCard(int userId, String name, int age, String card) {
         super(userId, name, age, card);
         this.begin = null;
