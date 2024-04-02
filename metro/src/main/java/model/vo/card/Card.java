@@ -9,6 +9,7 @@ public class Card extends User {
     PrepaidCard[] prepaidCards = new PrepaidCard[3];
     DeferredCard[] deferredCards = new DeferredCard[3];
 
+    public Card() {}
     public Card(int userId, String name, int age, String card) {
         super(userId, name, age, card);
         if (card.equals("climate")) {

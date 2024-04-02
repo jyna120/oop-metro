@@ -3,8 +3,9 @@ package model.vo.card;
 import java.util.Scanner;
 
 public class PrepaidCard extends Card{
-    int balance = 0;
+    private int balance = 0;
 
+    public PrepaidCard() {}
     public PrepaidCard(int userId, String name, int age, String card) {
         super(userId, name, age, card);
     }
