@@ -1,10 +1,10 @@
 package model.vo.card;
 
-import repository.UserRepository;
+import model.vo.User;
 
 import java.util.Arrays;
 
-public class Card extends UserRepository {
+public class Card extends User {
     ClimateCard[] climateCards = new ClimateCard[3];
     PrepaidCard[] prepaidCards = new PrepaidCard[3];
     DeferredCard[] deferredCards = new DeferredCard[3];
