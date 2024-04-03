@@ -13,18 +13,18 @@ public class FeeInvoice {
         switch(card.getCard()) {
             case "deferred": // 신용카드로 탑승 시
                 balance = card.getDeferredCard().getExpense() + card.getPrice();
-                System.out.println("기본 요금 : " + card.getPrice() + ", 누적 금액 : " + balance);
+                System.out.println("기본 요금 : " + card.getPrice() + "원, 누적 금액 : " + balance + "원");
                 break;
             case "prepaid": // 체크카드로 탑승 시
                 balance = card.getPrepaidCard().getBalance() - card.getPrice();
-                System.out.println("기본 요금 : " + card.getPrice() + ", 잔액 : " + balance);
+                System.out.println("기본 요금 : " + card.getPrice() + "원, 잔액 : " + balance + "원");
                 break;
             case "climate": // 기후동행카드로 탑승 시
                 LocalDate date = card.getClimateCard().getEnd();
-                System.out.println("만료일" + date);
+                System.out.println("만료일 : " + date);
                 break;
-            default: // 신용/체크 카드가 아닐 때(기후 동행은 호출하지 않아도 된다.)
-                System.out.println("승차에 실패했습니다. 다시 시도해주세요.");
+            default:
+                System.out.println("> 승차에 실패했습니다. 다시 시도해주세요.");
                 return;
         }
     }
@@ -39,24 +39,24 @@ public class FeeInvoice {
         switch(card.getCard()) {
             case "deferred": // 신용카드로 하차 시
                 int addPrice = balance + plusPrice; // 누적 금액
-                System.out.println("추가 요금 : " + plusPrice + ", 누적 금액: " + addPrice);
+                System.out.println("💰추가 요금 : " + plusPrice + "원, 누적 금액: " + addPrice + "원💰");
                 card.getDeferredCard().setExpense(addPrice);
                 break;
             case "prepaid": // 체크카드로 하차 시
                 int subPrice = balance - plusPrice; // 잔액
                 if(subPrice > 0) {
-                    System.out.println("추가 요금 : " + plusPrice + ", 잔액: " + subPrice);
+                    System.out.println("💰추가 요금 : " + plusPrice + "원, 잔액: " + subPrice + "원💰");
                     card.getPrepaidCard().setBalance(subPrice);
                 }else {
-                    System.out.println("잔액이 부족합니다. 충전 후 다시 이용해주세요.");
+                    System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
                 }
                 break;
             case "climate": // 기후동행카드로 하차 시
                 LocalDate date = card.getClimateCard().getEnd();
-                System.out.println("만료일" + date);
+                System.out.println("만료일 : " + date);
                 break;
-            default: // 신용/체크 카드가 아닐 때(기후 동행은 호출하지 않아도 된다.)
-                System.out.println("하차에 실패했습니다. 다시 시도해주세요.");
+            default:
+                System.out.println("> 하차에 실패했습니다. 다시 시도해주세요.");
                 break;
         }
     }
