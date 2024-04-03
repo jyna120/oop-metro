@@ -13,10 +13,28 @@ public class Gate {
     private int stops; // 총 이동한 정거장 수
     private int transfer; // 환승 횟수
 
-    public void menu(Card card) {
-        Gate gate = new Gate();
+    public Gate() {}
+    public Gate(int stops, int transfer) {
+        this.stops = stops;
+        this.transfer = transfer;
+    }
+    public int getStops() {
+        return stops;
+    }
+    public void setStops(int stops) {
+        this.stops = stops;
+    }
+    public int getTransfer() {
+        return transfer;
+    }
+    public void setTransfer(int transfer) {
+        this.transfer = transfer;
+    }
 
-        if(!gate.check(card)) // 승차 검사
+    public void menu(Card card) {
+//        Gate gate = new Gate();
+
+        if(!check(card)) // 승차 검사
             return;
 
         int countStop = 0; // 한 번 이동한 정거장 수
@@ -46,10 +64,12 @@ public class Gate {
                 break;
             }
         }
+
+        System.out.println(getStops() + " " + getTransfer());
     }
 
     public boolean check(Card card) {
-        UserRepository userRepository = new UserRepository();
+//        UserRepository userRepository = new UserRepository();
 //        Card card = new Card();
 
 //        List<Card> userList = userRepository.savedUser(); // 사용자 리스트
