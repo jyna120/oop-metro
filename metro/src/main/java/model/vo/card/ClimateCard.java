@@ -28,14 +28,14 @@ public class ClimateCard implements Serializable {
     // 기후동행카드 충전 메소드입니다.
     public void chargeClimate() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("시작일을 입력하세요. (yyyyMMdd)");
+        System.out.print("> 시작일을 입력하세요. (yyyyMMdd) : ");
 
         String begin;
         Long beginL = 20000101L;
         try {
             beginL = sc.nextLong();
         } catch (InputMismatchException e) {
-            System.out.println("잘못된 날짜 입력값입니다. : ");
+            System.out.println("> 잘못된 날짜 입력값입니다. : ");
         }
         begin = beginL.toString();
 
@@ -54,11 +54,11 @@ public class ClimateCard implements Serializable {
             this.end = userEnd;
             this.valid = true;
             // 유효한 카드로 바꿔줌
-            System.out.println("유효기간 : " + this.begin + "~" + this.end);
-            System.out.println("62000원을 결제합니다.");
+            System.out.println("\n💳유효기간 : " + this.begin + "~" + this.end + "💳");
+            System.out.println("💳62000원을 결제합니다.💳\n");
         } else {
             this.valid = false; // 아니면 만료된 카드로 바꿔줍니다.
-            System.out.println("올바른 기간설정이 아닙니다.");
+            System.out.println("> 올바른 기간설정이 아닙니다.");
         }
     }
 
