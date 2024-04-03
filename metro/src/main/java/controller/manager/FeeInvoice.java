@@ -1,11 +1,7 @@
 package controller.manager;
 
 public class FeeInvoice {
-
-    int price = 1400;
-    String cardCase = "ClimateCard";
-//    int balance = 0; // 잔액(or 누적 금액) 임시 저장
-    int balance = 30000;
+    int balance = 0; // 잔액(or 누적 금액) 임시 저장
 
     //탑승했을 때 출력하는 메소드 작성
     //-> 카드를 먼저 체크하고 나이에 따른 기본 요금 보여줌
@@ -23,8 +19,7 @@ public class FeeInvoice {
         }
     }
 
-
-
+    
     //하차했을 때 출력하는 메소드 작성
     //-> 카드 먼저 체크하고 나이에 해당하는 price, 이동 정거장 수, 환승 체크해서 계산
     private int surcharge(String cardCase, int price, int stops, int transfer) { // 카드 종류, 나이대 별 요금, 이동 정거장 수, 환승
