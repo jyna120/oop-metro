@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Station {
-    public static int userId; // 입력받은 사용자의 id
-
     public static void main(String[] args) {
         Station station = new Station();
         station.userMenu();
@@ -26,12 +24,13 @@ public class Station {
         Charger charger = new Charger();
 
         System.out.print("ID를 입력하세요 : ");
-        userId = sc.nextInt();
-        int selected = 0; // 선택지
+        int userId = sc.nextInt(); // 입력받은 사용자의 id
+        int selected = 0; // 메뉴 선택지
 
         while(true) {
             System.out.print("1. 지하철 승차 / 2. 충전 / 3. 종료 : ");
             selected = sc.nextInt();
+            System.out.println();
             
             switch (selected) {
                 case 1:
