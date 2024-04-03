@@ -13,6 +13,24 @@ public class Gate {
     private int stops; // 총 이동한 정거장 수
     private int transfer; // 환승 횟수
 
+    public Gate() {}
+    public Gate(int stops, int transfer) {
+        this.stops = stops;
+        this.transfer = transfer;
+    }
+    public int getStops() {
+        return stops;
+    }
+    public void setStops(int stops) {
+        this.stops = stops;
+    }
+    public int getTransfer() {
+        return transfer;
+    }
+    public void setTransfer(int transfer) {
+        this.transfer = transfer;
+    }
+
     public void menu(Card card) {
 //        Gate gate = new Gate();
 
@@ -46,6 +64,8 @@ public class Gate {
                 break;
             }
         }
+
+        System.out.println(getStops() + " " + getTransfer());
     }
 
     public boolean check(Card card) {
