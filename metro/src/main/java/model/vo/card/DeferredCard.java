@@ -18,6 +18,7 @@ public class DeferredCard {
     }
 
     public DeferredCard(LocalDate begin, int expense) {
+        // 생성시에 입력값이 유효한지 확인합니다.
         if (begin.plusMonths(1).isBefore(LocalDate.now())) {
             return;
         } else {
@@ -27,6 +28,7 @@ public class DeferredCard {
         }
     }
 
+    // 후불카드 충전메소드입니다.
     public void chargeDeferred() {
         Scanner sc = new Scanner(System.in);
         System.out.println("시작일을 입력하세요. (yyyyMMdd)");
@@ -42,12 +44,15 @@ public class DeferredCard {
             // 만료일이 현재 날짜보다 이전일 때
             System.out.println("올바른 기간설정이 아닙니다.");
         } else {
+            // 유효한 기간을 입력했을 때
             this.begin = userBegin;
             this.end = userBegin.plusMonths(1);
             System.out.println("자동결제일은 " + this.end + " 입니다.");
         }
     }
 
+    // 한달이 지나면 자동으로 만기가 되어 지출액이 0원으로 바뀝니다.
+    // 이 메소드는 매번 실행할 때 함께 실행해주어야 합니다.
     public void checkValid() {
         if (this.end.isEqual(LocalDate.now().plusDays(1))) {
             this.begin = this.end.plusDays(1);

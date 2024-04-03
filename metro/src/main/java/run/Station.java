@@ -35,8 +35,11 @@ public class Station {
             switch (selected) {
                 case 1:
                     gate.menu(userList.get(userId));
+                    // Gate의 menu로 사용자의 Card 객체를 전달합니다.
                     break;
-                case 2: charger.menu(userList.get(userId));
+                case 2:
+                    charger.menu(userList.get(userId));
+                    // Charger menu로 사용자의 Card 객체를 전달합니다.
                     break;
                 case 3:
                     System.out.println("> 종료되었습니다...");
