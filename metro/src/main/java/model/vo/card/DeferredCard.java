@@ -2,12 +2,13 @@ package model.vo.card;
 
 import model.vo.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class DeferredCard {
+public class DeferredCard implements Serializable {
     private LocalDate begin;
     private LocalDate end;
     private int expense;
