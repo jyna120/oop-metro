@@ -14,9 +14,9 @@ public class Gate {
     private int transfer; // 환승 횟수
 
     public void menu(Card card) {
-        Gate gate = new Gate();
+//        Gate gate = new Gate();
 
-        if(!gate.check(card)) // 승차 검사
+        if(!check(card)) // 승차 검사
             return;
 
         int countStop = 0; // 한 번 이동한 정거장 수
@@ -49,7 +49,7 @@ public class Gate {
     }
 
     public boolean check(Card card) {
-        UserRepository userRepository = new UserRepository();
+//        UserRepository userRepository = new UserRepository();
 //        Card card = new Card();
 
 //        List<Card> userList = userRepository.savedUser(); // 사용자 리스트
