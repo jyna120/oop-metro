@@ -25,14 +25,26 @@ public class Station {
         Charger charger = new Charger();
 
         System.out.print("ID를 입력하세요 : ");
-        int userId = sc.nextInt();
-        System.out.print("1. 지하철 승차 / 2. 충전 : ");
-        int selected = sc.nextInt();
+        userId = sc.nextInt();
+        int selected = 0; // 선택지
 
-        switch (selected) {
-            case 1 : gate.menu(userList.get(userId)); break;
-            case 2 :
-                charger.menu(userList.get(userId));
+        while(true) {
+            System.out.print("1. 지하철 승차 / 2. 충전 / 3. 종료 : ");
+            selected = sc.nextInt();
+            
+            switch (selected) {
+                case 1:
+                    gate.menu(userList.get(userId));
+                    break;
+                case 2: charger.menu(userList.get(userId));
+                    break;
+                case 3:
+                    System.out.println("> 종료되었습니다...");
+                    return;
+                default:
+                    System.out.println("> 잘못 입력하셨습니다. 다시 입력해주세요.");
+                    break;
+            }
         }
     }
 }

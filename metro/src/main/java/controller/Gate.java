@@ -55,23 +55,23 @@ public class Gate {
 //        List<Card> userList = userRepository.savedUser(); // 사용자 리스트
         LocalDate now = LocalDate.now();
 
-        boolean isClimate = "climate".equals(card.getCard()); // 기후동행카드 여부
-        boolean isPrepaid = "prepaid".equals(card.getCard()); // 선불카드 여부
-        // NPE 발생
-        boolean isChargedClimate = card.getClimateCard().isValid(); // 기후동행카드 충전 여부
-        boolean isValidity = now.isAfter(card.getClimateCard().getEnd()); // 기후동행카드 유효기간 만료 여부
-        int balance = card.getPrepaidCard().getBalance(); // 선불카드 잔액
-        int price = card.getPrice(); // 사용자 나이에 맞는 기본 요금
-
-        if(isClimate && (!isChargedClimate || isValidity)) {
-            System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...");
-            return false;
-        }
-
-        if(isPrepaid && (balance < price)) {
-            System.out.println("> 선불카드 잔액이 부족합니다. 충전하세요...");
-            return false;
-        }
+//        boolean isClimate = "climate".equals(card.getCard()); // 기후동행카드 여부
+//        boolean isPrepaid = "prepaid".equals(card.getCard()); // 선불카드 여부
+//        // NPE 발생
+//        boolean isChargedClimate = card.getClimateCard().isValid(); // 기후동행카드 충전 여부
+//        boolean isValidity = now.isAfter(card.getClimateCard().getEnd()); // 기후동행카드 유효기간 만료 여부
+//        int balance = card.getPrepaidCard().getBalance(); // 선불카드 잔액
+//        int price = card.getPrice(); // 사용자 나이에 맞는 기본 요금
+//
+//        if(isClimate && (!isChargedClimate || isValidity)) {
+//            System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...");
+//            return false;
+//        }
+//
+//        if(isPrepaid && (balance < price)) {
+//            System.out.println("> 선불카드 잔액이 부족합니다. 충전하세요...");
+//            return false;
+//        }
 
         return true;
     }
