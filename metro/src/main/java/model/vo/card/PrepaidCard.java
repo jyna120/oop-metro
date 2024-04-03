@@ -23,7 +23,7 @@ public class PrepaidCard {
         try {
             userBalance = sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("올바른 입금액을 입력해주세요. : " + userBalance);
+            System.out.println("올바른 입금액을 입력해주세요. : ");
         }
         this.balance += userBalance;
         System.out.println("충전되었습니다!");

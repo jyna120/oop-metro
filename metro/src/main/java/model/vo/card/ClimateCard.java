@@ -34,7 +34,7 @@ public class ClimateCard {
         try {
             beginL = sc.nextLong();
         } catch (InputMismatchException e) {
-            System.out.println("잘못된 날짜 입력값입니다. : " + beginL);
+            System.out.println("잘못된 날짜 입력값입니다. : ");
         }
         begin = beginL.toString();
 

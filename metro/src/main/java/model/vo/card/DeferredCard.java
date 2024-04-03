@@ -40,7 +40,7 @@ public class DeferredCard {
         try {
             beginL = sc.nextLong();
         } catch (InputMismatchException e) {
-            System.out.println("잘못된 날짜 입력값입니다. : " + beginL);
+            System.out.println("잘못된 날짜 입력값입니다. : ");
         }
 //        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
 //        String end = sc.next();
