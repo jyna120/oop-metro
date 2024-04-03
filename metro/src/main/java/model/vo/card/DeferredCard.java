@@ -4,6 +4,7 @@ import model.vo.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DeferredCard {
@@ -32,9 +33,19 @@ public class DeferredCard {
     public void chargeDeferred() {
         Scanner sc = new Scanner(System.in);
         System.out.println("시작일을 입력하세요. (yyyyMMdd)");
-        String begin = sc.next();
+
+        String begin;
+        Long beginL = 20000101L;
+        // 숫자 이외의 문자, 기호 등을 입력받았을 경우 예외처리
+        try {
+            beginL = sc.nextLong();
+        } catch (InputMismatchException e) {
+            System.out.println("잘못된 날짜 입력값입니다. : " + beginL);
+        }
 //        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
 //        String end = sc.next();
+        begin = beginL.toString();
+        // Long값으로 받았지만 LocalDate로 쓰기 위해 String으로 바꿔줍니다.
 
         LocalDate userBegin = LocalDate.parse(begin, DateTimeFormatter.ofPattern("yyyyMMdd"));
 

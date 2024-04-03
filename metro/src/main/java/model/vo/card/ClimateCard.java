@@ -4,6 +4,7 @@ import model.vo.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ClimateCard {
@@ -27,7 +28,16 @@ public class ClimateCard {
     public void chargeClimate() {
         Scanner sc = new Scanner(System.in);
         System.out.println("시작일을 입력하세요. (yyyyMMdd)");
-        String begin = sc.next();
+
+        String begin;
+        Long beginL = 20000101L;
+        try {
+            beginL = sc.nextLong();
+        } catch (InputMismatchException e) {
+            System.out.println("잘못된 날짜 입력값입니다. : " + beginL);
+        }
+        begin = beginL.toString();
+
 //        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
 //        String end = sc.next();
 
