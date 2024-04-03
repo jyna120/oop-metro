@@ -1,41 +1,44 @@
 package controller.manager;
 
-import controller.Gate;
-
 public class FeeInvoice {
-    Gate gate = new Gate();
-
-    //    String cardCase = gate.getCardCase(); // 카드 종류
-//    int price = gate.getPrice(); // 유저에서 프라이스 가져오기
-//    cards[userId].getPrepaidCards()[userId].getBalance(); // 선불카드 잔액
-//    cards[userId].getDeferredCards()[userId].getExpense(); // 후불카드 누적 금액
-//    cards[userId].getClimateCards()[userId].isCharged(); // 기후동행 유효 여부
-    int price = 1400;
-    String cardCase = "ClimateCard";
-    int balance = 30000;
+    int balance = 0; // 잔액(or 누적 금액) 임시 저장
 
     //탑승했을 때 출력하는 메소드 작성
     //-> 카드를 먼저 체크하고 나이에 따른 기본 요금 보여줌
     private void rideFare(int price, String cardCase, int balance) { // 나이대 별 요금, 카드 종류, 잔액(or 누적 금액)
         switch(cardCase) {
-            case "DeferredCard":
+            case "DeferredCard": // 신용카드로 탑승 시
                 System.out.println("기본 요금 : " + price + "누적 금액 : " + balance);
                 break;
-            case "PrepaidCard":
+            case "PrepaidCard": // 체크카드로 탑승 시
                 System.out.println("기본 요금 : " + price + "잔액 : " + balance);
                 break;
-            default:
+            default: // 신용/체크 카드가 아닐 때(기후 동행은 호출하지 않아도 된다.)
                 System.out.println("승차에 실패했습니다. 다시 시도해주세요.");
                 return;
         }
     }
 
-
-
+    
     //하차했을 때 출력하는 메소드 작성
-    //-> 카드 먼저 체크하고 나이 체크하고 이동 정거장 수랑 환승 체크해서 계산
-    private void surcharge() {
+    //-> 카드 먼저 체크하고 나이에 해당하는 price, 이동 정거장 수, 환승 체크해서 계산
+    private int surcharge(String cardCase, int price, int stops, int transfer) { // 카드 종류, 나이대 별 요금, 이동 정거장 수, 환승
+        int overTransfer = transfer / 4;
+        int plusPrice = price * overTransfer + (stops - 10) * 50;
 
+        switch(cardCase) {
+            case "DeferredCard": // 신용카드로 하차 시
+                int addPrice = balance + plusPrice; // 누적 금액
+                System.out.println("추가 요금 : " + plusPrice + ", 누적 금액: " + addPrice);
+                return addPrice;
+            case "PrepaidCard": // 체크카드로 하차 시
+                int subPrice = balance - plusPrice; // 잔액
+                System.out.println("추가 요금 : " + plusPrice + ", 잔액: " + subPrice);
+                return subPrice;
+            default: // 신용/체크 카드가 아닐 때(기후 동행은 호출하지 않아도 된다.)
+                System.out.println("하차에 실패했습니다. 다시 시도해주세요.");
+                return 0;
+        }
     }
 
 }
