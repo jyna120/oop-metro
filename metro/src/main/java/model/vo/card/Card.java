@@ -9,10 +9,6 @@ public class Card extends User {
     PrepaidCard prepaidCard = new PrepaidCard();
     DeferredCard deferredCard = new DeferredCard();
 
-    public Card(ClimateCard climateCard) {
-        this.climateCard = climateCard;
-    }
-
     public Card(int userId, String name, int age, String card, ClimateCard climateCard) {
         super(userId, name, age, card);
         this.climateCard = climateCard;

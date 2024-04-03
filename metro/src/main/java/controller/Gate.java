@@ -1,5 +1,6 @@
 package controller;
 
+import controller.manager.FeeInvoice;
 import model.vo.card.Card;
 import repository.UserRepository;
 import run.Station;
@@ -14,6 +15,7 @@ public class Gate {
     private int transfer; // 환승 횟수
 
     public Gate() {}
+
     public Gate(int stops, int transfer) {
         this.stops = stops;
         this.transfer = transfer;
@@ -33,6 +35,8 @@ public class Gate {
 
     public void menu(Card card) {
 //        Gate gate = new Gate();
+        FeeInvoice feeInvoice = new FeeInvoice();
+
 
         if(!check(card)) // 승차 검사
             return;
@@ -45,6 +49,8 @@ public class Gate {
                 """;
 
         System.out.println("====🚎지하철에 승차했습니다.🚎====");
+
+        feeInvoice.rideFare(card);
 
         while(true) {
             System.out.print("> 몇 정거장 이동하시겠습니까? : ");
@@ -66,6 +72,8 @@ public class Gate {
         }
 
         System.out.println(getStops() + " " + getTransfer());
+
+        feeInvoice.surcharge(card, getStops(), getTransfer());
     }
 
     public boolean check(Card card) {
