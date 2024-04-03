@@ -2,6 +2,7 @@ package run;
 
 import controller.Charger;
 import controller.Gate;
+import model.vo.User;
 import model.vo.card.Card;
 import repository.UserRepository;
 

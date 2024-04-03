@@ -19,7 +19,7 @@ public class FeeInvoice {
         }
     }
 
-    
+
     //하차했을 때 출력하는 메소드 작성
     //-> 카드 먼저 체크하고 나이에 해당하는 price, 이동 정거장 수, 환승 체크해서 계산
     private int surcharge(String cardCase, int price, int stops, int transfer) { // 카드 종류, 나이대 별 요금, 이동 정거장 수, 환승
