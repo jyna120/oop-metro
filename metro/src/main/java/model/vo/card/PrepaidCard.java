@@ -13,6 +13,8 @@ public class PrepaidCard {
         this.balance = balance;
     }
 
+    // 선불카드 충전메소드입니다.
+    // 입금액에 대한 예외처리가 필요할 것 같긴 함
     public void chargePrepaid() {
         Scanner sc = new Scanner(System.in);
         System.out.println("입금액을 입력하세요.");
