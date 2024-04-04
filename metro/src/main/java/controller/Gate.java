@@ -45,8 +45,16 @@ public class Gate {
             System.out.print("> 몇 정거장 이동하시겠습니까? : ");
             countStop = sc.nextInt(); // 한 번 이동한 정거장 수
             System.out.println();
-            System.out.println(move);
             stops += countStop; // 총 이동한 정거장 수 계산
+            boolean bool = feeInvoice.checkBalance(card, stops, transfer);
+            if(bool) {
+                System.out.println(move);
+            }else {
+                System.out.println("====🚎지하철에서 하차했습니다.🚎====");
+//                setStopover(true); // 하차했으므로 true
+                return;
+            }
+//            feeInvoice.surcharge(card, stops, transfer);
 
             System.out.print("> 환승 하시겠습니까? (y/n) : ");
             transferYN = sc.next().toUpperCase().charAt(0); // 환승 여부 입력 (대소문자 구분x)
