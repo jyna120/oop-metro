@@ -42,12 +42,12 @@ public class FeeInvoice {
                 break;
             case "prepaid": // 체크카드로 하차 시
                 int subPrice = balance - plusPrice; // 잔액
-                if(subPrice > 0) {
-                    System.out.println("💰추가 요금 : " + plusPrice + "원, 잔액: " + subPrice + "원💰");
-                    card.getPrepaidCard().setBalance(subPrice);
-                }else {
-                    System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
-                }
+//                if(subPrice > 0) {
+                System.out.println("💰추가 요금 : " + plusPrice + "원, 잔액: " + subPrice + "원💰");
+                card.getPrepaidCard().setBalance(subPrice);
+//                }else {
+//                    System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
+//                }
                 break;
             case "climate": // 기후동행카드로 하차 시
                 LocalDate date = card.getClimateCard().getEnd();
@@ -57,5 +57,17 @@ public class FeeInvoice {
                 System.out.println("> 하차에 실패했습니다. 다시 시도해주세요.");
                 break;
         }
+    }
+
+    public boolean checkBalance(Card card, int stops, int transfer) {
+        int overTransfer = transfer / 4;
+        int plusPrice = card.getPrice() * overTransfer + (stops > 10 ? (stops - 10) / 4 : 0) * 50;
+
+        int subPrice = balance - plusPrice; // 잔액
+        if(subPrice < 0) {
+            System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
+            return false;
+        }
+        return true;
     }
 }
