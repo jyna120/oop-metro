@@ -54,7 +54,7 @@ public class DeferredCard implements Serializable {
 
         if (userBegin.plusMonths(1).isBefore(LocalDate.now())) {
             // 만료일이 현재 날짜보다 이전일 때
-            System.out.println("> 올바른 기간설정이 아닙니다.");
+            System.out.println("\n> 올바른 기간설정이 아닙니다.");
         } else {
             // 유효한 기간을 입력했을 때
             this.begin = userBegin;
