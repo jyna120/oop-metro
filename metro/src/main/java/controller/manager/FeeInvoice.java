@@ -70,10 +70,12 @@ public class FeeInvoice {
         int plusPrice = card.getPrice() * overTransfer + (stops > 10 ? (stops - 10) / 4 : 0) * 50;
 
         if(card.getPrice() != 0) { // 노약자 및 미취학아동 체크
-            int subPrice = balance - plusPrice; // 잔액
-            if(subPrice < 0) {
-                System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
-                return false;
+            if(card.getCard().equals("prepaid")) {
+                int subPrice = balance - plusPrice; // 잔액
+                if(subPrice < 0) {
+                    System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
+                    return false;
+                }
             }
         }
         return true;
