@@ -2,41 +2,31 @@ package controller;
 
 import controller.manager.FeeInvoice;
 import model.vo.card.Card;
+import run.Station;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Gate {
-    private Scanner sc = new Scanner(System.in);
-    private int stops; // 총 이동한 정거장 수
-    private int transfer; // 환승 횟수
+    private boolean isStopover; // 하차 여부
 
-    public Gate() {}
-
-    public Gate(int stops, int transfer) {
-        this.stops = stops;
-        this.transfer = transfer;
+    public void setStopover(boolean isStopover) {
+        this.isStopover = isStopover;
     }
-    public int getStops() {
-        return stops;
-    }
-    public void setStops(int stops) {
-        this.stops = stops;
-    }
-    public int getTransfer() {
-        return transfer;
-    }
-    public void setTransfer(int transfer) {
-        this.transfer = transfer;
+    public boolean isStopover() {
+        return this.isStopover;
     }
 
     public void menu(Card card) {
-//        Gate gate = new Gate();
+        Scanner sc = new Scanner(System.in);
         FeeInvoice feeInvoice = new FeeInvoice();
 
         // 승차 검사
-        if(!check(card))
+        if (!check(card)) {
+            setStopover(false); // 하차하지 않았으므로 false
             return;
+        }
 
         int stops = 0; // 총 이동한 정거장 수
         int transfer = 0; // 총 환승 횟수
@@ -51,8 +41,6 @@ public class Gate {
         feeInvoice.rideFare(card); // 사용자의 기본 요금, 잔액/누적 금액 출력
         System.out.println();
 
-        feeInvoice.rideFare(card);
-
         while(true) {
             System.out.print("> 몇 정거장 이동하시겠습니까? : ");
             countStop = sc.nextInt(); // 한 번 이동한 정거장 수
@@ -64,16 +52,16 @@ public class Gate {
             transferYN = sc.next().toUpperCase().charAt(0); // 환승 여부 입력 (대소문자 구분x)
             System.out.println();
 
-            if(transferYN == 'Y') {
+            if(transferYN == 'Y')
                 transfer++; // 환승 한 번 할 때마다 환승 횟수 증가
-            } else if(transferYN == 'N') {
+            else if(transferYN == 'N') {
                 System.out.println("====🚎지하철에서 하차했습니다.🚎====");
+                setStopover(true); // 하차했으므로 true
                 break;
             }
 //            else {
                  // 문자를 잘못 입력한 경우
 //            }
-
         }
 
         System.out.println("> 총 이동 정거장 수 : " + stops + "개, 환승 횟수 : " + transfer + "번");
@@ -95,9 +83,9 @@ public class Gate {
         switch (card.getCard()) {
             case "climate":
                 isChargedClimate = card.getClimateCard().isValid(); // 기후동행카드를 충전한 상태라면 true
-                isValidity = ChronoUnit.DAYS.between(card.getClimateCard().getEnd(), now) > 0; // 기후동행카드 유효기간 만료 날짜가 오늘 이전이라면 true
-                if(!isChargedClimate || isValidity) {
-                    System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...");
+                isValidity = ChronoUnit.DAYS.between(card.getClimateCard().getEnd(), now) < 0; // 기후동행카드 유효기간 만료 날짜가 오늘 이전이라면 true
+                if(!isChargedClimate || !isValidity) {
+                    System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...\n");
                     return false;
                 }
                 break;
@@ -105,7 +93,7 @@ public class Gate {
                 balance = card.getPrepaidCard().getBalance(); // 선불카드의 잔액
                 price = card.getPrice(); // 사용자 나이에 맞는 기본 요금
                 if(balance < price) {
-                    System.out.println("> 선불카드 잔액이 부족합니다. 충전하세요...");
+                    System.out.println("> 선불카드 잔액이 부족합니다. 충전하세요...\n");
                     return false;
                 }
                 break;
