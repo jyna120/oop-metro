@@ -1,8 +1,5 @@
 package controller.manager;
 import model.vo.card.Card;
-
-import model.vo.card.Card;
-
 import java.time.LocalDate;
 
 public class FeeInvoice {
@@ -33,25 +30,6 @@ public class FeeInvoice {
 
     //하차했을 때 출력하는 메소드 작성
     //-> 카드 먼저 체크하고 나이에 해당하는 price, 이동 정거장 수, 환승 체크해서 계산
-
-    public void surcharge(Card card, int stops, int transfer) { // Card(카드 종류, 나이대 별 요금), 이동 정거장 수, 환승
-        int overTransfer = transfer / 4;
-        int plusPrice = card.getPrice() * overTransfer + (stops - 10) * 50;
-
-        switch(card.getCard()) {
-            case "DeferredCard": // 신용카드로 하차 시
-                int addPrice = balance + plusPrice; // 누적 금액
-                System.out.println("추가 요금 : " + plusPrice + ", 누적 금액: " + addPrice);
-                card.getDeferredCard().setExpense(addPrice);
-                break;
-            case "PrepaidCard": // 체크카드로 하차 시
-                int subPrice = balance - plusPrice; // 잔액
-                System.out.println("추가 요금 : " + plusPrice + ", 잔액: " + subPrice);
-                card.getPrepaidCard().setBalance(subPrice);
-                break;
-            default: // 신용/체크 카드가 아닐 때(기후 동행은 호출하지 않아도 된다.)
-                System.out.println("하차에 실패했습니다. 다시 시도해주세요.");
-
     public void surcharge(Card card, int stops, int transfer) { // 카드 종류, 나이대 별 요금, 이동 정거장 수, 환승
         int overTransfer = transfer / 4;
         int plusPrice = card.getPrice() * overTransfer + (stops > 10 ? (stops - 10) / 4 : 0) * 50;
