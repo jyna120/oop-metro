@@ -7,9 +7,31 @@ import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Gate {
+    private Scanner sc = new Scanner(System.in);
+    private int stops; // 총 이동한 정거장 수
+    private int transfer; // 환승 횟수
+
+    public Gate() {}
+
+    public Gate(int stops, int transfer) {
+        this.stops = stops;
+        this.transfer = transfer;
+    }
+    public int getStops() {
+        return stops;
+    }
+    public void setStops(int stops) {
+        this.stops = stops;
+    }
+    public int getTransfer() {
+        return transfer;
+    }
+    public void setTransfer(int transfer) {
+        this.transfer = transfer;
+    }
 
     public void menu(Card card) {
-        Scanner sc = new Scanner(System.in);
+//        Gate gate = new Gate();
         FeeInvoice feeInvoice = new FeeInvoice();
 
         // 승차 검사
@@ -28,6 +50,8 @@ public class Gate {
         System.out.println("====🚎지하철에 승차했습니다.🚎====");
         feeInvoice.rideFare(card); // 사용자의 기본 요금, 잔액/누적 금액 출력
         System.out.println();
+
+        feeInvoice.rideFare(card);
 
         while(true) {
             System.out.print("> 몇 정거장 이동하시겠습니까? : ");
