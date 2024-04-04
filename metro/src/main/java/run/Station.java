@@ -4,6 +4,9 @@ import controller.Charger;
 import controller.Gate;
 import model.vo.User;
 import model.vo.card.Card;
+import model.vo.card.ClimateCard;
+import model.vo.card.DeferredCard;
+import model.vo.card.PrepaidCard;
 import repository.UserRepository;
 
 import java.io.File;
@@ -14,6 +17,7 @@ import java.util.Scanner;
 
 public class Station {
     public static void main(String[] args) {
+
         Station station = new Station();
         station.userMenu();
     }
@@ -21,7 +25,10 @@ public class Station {
     public void userMenu() {
 
         UserRepository userRepository = new UserRepository();
-        List<Card> userList = userRepository.savedUser();
+        List<Card> userList = readRepository();
+        if (userList == null) {
+            userList = userRepository.savedUser();
+        }
 
         Scanner sc = new Scanner(System.in);
         Gate gate = new Gate();
@@ -85,5 +92,21 @@ public class Station {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Card> readRepository() {
+        File target = new File("C:\\Workspaces\\oop-metro\\metro\\src\\userList.txt");
+
+        List<Card> userList = new ArrayList<>();
+        try(ObjectInputStream textToList = new ObjectInputStream(new BufferedInputStream(new FileInputStream(target)))) {
+            Object object = textToList.readObject();
+
+            userList = (List<Card>) object;
+
+            System.out.println("Input users : " + userList);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 }
