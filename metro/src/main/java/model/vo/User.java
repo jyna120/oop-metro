@@ -17,12 +17,12 @@ public class User implements Serializable {
         this.age = age;
         this.card = card;
 
-        if (age < 65)
-            this.price = 1400;
+        if (age < 12)
+            this.price = 500;
         else if (age < 19)
             this.price = 800;
-        else if (age < 12)
-            this.price = 500;
+        else if (age < 65)
+            this.price = 1400;
         else
             this.price = 0;
     }
@@ -74,7 +74,6 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", card='" + card + '\'' +
-                ", price=" + price +
-                '}';
+                ", price=" + price + '}';
     }
 }

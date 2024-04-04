@@ -65,8 +65,8 @@ public class Gate {
         }
 
         System.out.println("> 총 이동 정거장 수 : " + stops + "개, 환승 횟수 : " + transfer + "번");
-        feeInvoice.surcharge(card, stops, transfer);
         System.out.println();
+        feeInvoice.surcharge(card, stops, transfer);
     }
 
     // 승차 검사
