@@ -33,7 +33,7 @@ public class DeferredCard implements Serializable {
     // 후불카드 충전메소드입니다.
     public void chargeDeferred() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("시작일을 입력하세요. (yyyyMMdd)");
+        System.out.print("> 시작일을 입력하세요. (yyyyMMdd) : ");
 
         String begin;
         Long beginL = 20000101L;
@@ -41,7 +41,7 @@ public class DeferredCard implements Serializable {
         try {
             beginL = sc.nextLong();
         } catch (InputMismatchException e) {
-            System.out.println("잘못된 날짜 입력값입니다. : ");
+            System.out.println("> 잘못된 날짜 입력값입니다. : ");
         }
 //        System.out.println("만료일을 입력하세요. (yyyyMMdd)");
 //        String end = sc.next();
@@ -54,12 +54,12 @@ public class DeferredCard implements Serializable {
 
         if (userBegin.plusMonths(1).isBefore(LocalDate.now())) {
             // 만료일이 현재 날짜보다 이전일 때
-            System.out.println("올바른 기간설정이 아닙니다.");
+            System.out.println("> 올바른 기간설정이 아닙니다.");
         } else {
             // 유효한 기간을 입력했을 때
             this.begin = userBegin;
             this.end = userBegin.plusMonths(1);
-            System.out.println("자동결제일은 " + this.end + " 입니다.");
+            System.out.println("💳자동결제일은 " + this.end + " 입니다.💳\n");
         }
     }
 
