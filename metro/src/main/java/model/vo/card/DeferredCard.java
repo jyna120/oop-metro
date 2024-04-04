@@ -68,6 +68,7 @@ public class DeferredCard implements Serializable {
     public void checkValid() {
         if (this.end.isEqual(LocalDate.now().plusDays(1))) {
             this.begin = this.end.plusDays(1);
+            this.end = this.begin.plusMonths(1);
             this.expense = 0;
         }
     }

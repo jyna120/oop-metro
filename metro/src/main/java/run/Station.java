@@ -45,6 +45,9 @@ public class Station {
         System.out.print("당신의 ID를 입력하세요 : ");
         int userId = sc.nextInt(); // 입력받은 사용자의 id
         System.out.printf("😊당신의 이름은 %s, 나이는 %d, 카드는 %s입니다.\n\n", userList.get(userId).getName(), userList.get(userId).getAge(), userList.get(userId).getCard());
+//        if (userList.get(userId).getCard().equals("deferred")) {
+//            userList.get(userId).getDeferredCard().checkValid();
+//        }
         int selected = 0; // 메뉴 선택지
 
         while(true) {
