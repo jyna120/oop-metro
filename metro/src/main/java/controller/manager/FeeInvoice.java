@@ -1,5 +1,4 @@
 package controller.manager;
-
 import model.vo.card.Card;
 
 public class FeeInvoice {

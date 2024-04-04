@@ -1,11 +1,10 @@
 package model.vo.card;
 
-import model.vo.User;
-
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class PrepaidCard {
+public class PrepaidCard implements Serializable {
     private int balance = 0;
 
     public PrepaidCard() {}

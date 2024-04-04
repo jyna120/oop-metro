@@ -2,9 +2,9 @@ package model.vo.card;
 
 import model.vo.User;
 
-import java.util.Arrays;
+import java.io.Serializable;
 
-public class Card extends User {
+public class Card extends User implements Serializable {
     ClimateCard climateCard = new ClimateCard();
     PrepaidCard prepaidCard = new PrepaidCard();
     DeferredCard deferredCard = new DeferredCard();

@@ -1,6 +1,8 @@
 package model.vo;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int userId;
     private String name;
     private int age;
