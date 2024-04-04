@@ -34,10 +34,10 @@ public class Gate {
         char transferYN = ' '; // 환승 여부 입력
         String move = """
                 🚎🚎🚎🚎~~이동하는 중~~🚎🚎🚎🚎
-                🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎
+                🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎🚎
                 """;
 
-        System.out.println("====🚎지하철에 승차했습니다.🚎====");
+        System.out.println("=====🚎지하철에 승차했습니다.🚎=====");
         feeInvoice.rideFare(card); // 사용자의 기본 요금, 잔액/누적 금액 출력
         System.out.println();
 
@@ -47,15 +47,14 @@ public class Gate {
             countStop = sc.nextInt(); // 한 번 이동한 정거장 수
             System.out.println();
             stops += countStop; // 총 이동한 정거장 수 계산
+
             boolean bool = feeInvoice.checkBalance(card, stops, transfer);
             if(bool) {
                 System.out.println(move);
-            }else {
-                System.out.println("====🚎지하철에서 하차했습니다.🚎====");
-//                setStopover(true); // 하차했으므로 true
+            }else { // 선불카드일 때 승차 중 추가 요금으로 잔액이 부족한 경우
+                System.out.println("=====🚎지하철에서 하차했습니다.🚎=====\n");
                 return;
             }
-//            feeInvoice.surcharge(card, stops, transfer);
 
             while(true) {
                 System.out.print("> 환승 하시겠습니까? (y/n) : ");
@@ -67,7 +66,7 @@ public class Gate {
                     break;
                 }
                 else if(transferYN == 'N') {
-                    System.out.println("====🚎지하철에서 하차했습니다.🚎====");
+                    System.out.println("=====🚎지하철에서 하차했습니다.🚎=====");
                     setStopover(true); // 하차했으므로 true
                     break move;
                 } else // 문자를 잘못 입력한 경우
