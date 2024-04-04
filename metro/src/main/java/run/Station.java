@@ -37,7 +37,6 @@ public class Station {
         System.out.printf("😊당신의 이름은 %s, 나이는 %d, 카드는 %s입니다.\n\n", userList.get(userId).getName(), userList.get(userId).getAge(), userList.get(userId).getCard());
         int selected = 0; // 메뉴 선택지
 
-        abc:
         while(true) {
             System.out.println("=====메뉴를 선택해주세요=====");
             System.out.print("1. 지하철 승차 / 2. 충전 / 3. 종료 : ");
@@ -46,12 +45,14 @@ public class Station {
             
             switch (selected) {
                 case 1:
-                    gate.menu(userList.get(userId));
                     // Gate의 menu로 사용자의 Card 객체를 전달합니다.
-                    break abc;
+                    gate.menu(userList.get(userId));
+                    if(gate.isStopover()) // 하차한 경우 프로그램 종료
+                        return;
+                    break;
                 case 2:
-                    charger.menu(userList.get(userId));
                     // Charger menu로 사용자의 Card 객체를 전달합니다.
+                    charger.menu(userList.get(userId));
                     break;
                 case 3:
                     System.out.println("> 프로그램이 종료되었습니다.");
