@@ -50,18 +50,7 @@ public class Card extends User implements Serializable {
 
     @Override
     public String toString() {
-
         return
-                "User{" +
-                "userId=" + getUserId() +
-                ", name=" + getName() +
-                ", age" + getAge() +
-                ", card" + getCard() +
-                ", price" + getPrice() +
-                ", Card{" +
-                "climateCard=" + climateCard +
-                ", prepaidCard=" + prepaidCard +
-                ", deferredCard=" + deferredCard +
-                "}}" + '\n';
+                getUserId() + "," + getName() + "," + getAge() + "," + getCard() + "," + getPrice() + "," + climateCard + "," + prepaidCard + "," + deferredCard + '\n';
     }
 }
