@@ -23,12 +23,15 @@ public class Station {
     }
 
     public void userMenu() {
-
         UserRepository userRepository = new UserRepository();
         List<Card> userList = readRepository();
-        if (userList == null) {
-            userList = userRepository.savedUser();
-        }
+//        userList = userRepository.savedUser();
+//        if (userList != null) {
+//            userList = readRepository();
+//        } else {
+//            userRepository.savedUser();
+//        }
+
 
         Scanner sc = new Scanner(System.in);
         Gate gate = new Gate();
@@ -94,7 +97,7 @@ public class Station {
 
     public List<Card> readRepository() {
         File target = new File("C:\\Workspaces\\oop-metro\\metro\\src\\userList.txt");
-
+        UserRepository userRepository = new UserRepository();
         List<Card> userList = new ArrayList<>();
         try(ObjectInputStream textToList = new ObjectInputStream(new BufferedInputStream(new FileInputStream(target)))) {
             Object object = textToList.readObject();
@@ -103,7 +106,7 @@ public class Station {
 
             System.out.println("Input users : " + userList);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            userList = userRepository.savedUser();
         }
         return userList;
     }
