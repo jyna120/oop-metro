@@ -6,6 +6,9 @@ import model.vo.User;
 import model.vo.card.Card;
 import repository.UserRepository;
 
+import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +19,7 @@ public class Station {
     }
 
     public void userMenu() {
+
         UserRepository userRepository = new UserRepository();
         List<Card> userList = userRepository.savedUser();
 
@@ -46,11 +50,18 @@ public class Station {
             
             switch (selected) {
                 case 1:
+//                    userList.set(userId,gate.menu(userList.get(userId)));
                     gate.menu(userList.get(userId));
+                    System.out.println(userList.get(userId));
+//                    userList.set(userId, userList.get(userId));
+                    System.out.println(userList.get(userId));
+                    saveRepository(userList);
                     // Gate의 menu로 사용자의 Card 객체를 전달합니다.
                     break abc;
                 case 2:
                     charger.menu(userList.get(userId));
+                    System.out.println(userList.get(userId));
+                    saveRepository(userList);
                     // Charger menu로 사용자의 Card 객체를 전달합니다.
                     break;
                 case 3:
@@ -60,6 +71,19 @@ public class Station {
                     System.out.println("> 잘못 입력하셨습니다. 다시 입력해주세요.");
                     break;
             }
+        }
+    }
+
+    public void saveRepository(List<Card> userList) {
+        File target = new File("C:\\Workspaces\\oop-metro\\metro\\src\\userList.txt");
+
+        // 입출력 형식으로 userList.txt에 user 정보 저장
+        try(ObjectOutputStream listToText = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
+            listToText.writeObject(userList);
+//            System.out.println("userList : " + userList);
+            System.out.println("output users : " + userList);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

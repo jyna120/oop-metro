@@ -46,4 +46,8 @@ public class UserRepository {
 
         return userList;
     }
+
+    public Card save(Card card) {
+        return card;
+    }
 }

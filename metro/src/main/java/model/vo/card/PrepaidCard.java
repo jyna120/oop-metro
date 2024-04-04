@@ -25,6 +25,7 @@ public class PrepaidCard implements Serializable {
             System.out.println("> 올바른 입금액을 입력해주세요. : ");
         }
         this.balance += userBalance;
+//        card.getPrepaidCard().setBalance(card.getPrepaidCard().getBalance() + userBalance);
         System.out.println("\n💳충전되었습니다!💳");
     }
 
