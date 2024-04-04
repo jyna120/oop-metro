@@ -2,11 +2,7 @@ package run;
 
 import controller.Charger;
 import controller.Gate;
-import model.vo.User;
 import model.vo.card.Card;
-import model.vo.card.ClimateCard;
-import model.vo.card.DeferredCard;
-import model.vo.card.PrepaidCard;
 import repository.UserRepository;
 
 import java.io.File;
