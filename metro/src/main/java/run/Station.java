@@ -116,7 +116,7 @@ public class Station {
 
             userList = (List<Card>) object;
 
-            System.out.println("Input users : " + userList);
+            System.out.println("이용자 목록 읽기 성공!");
         } catch (IOException | ClassNotFoundException e) {
             userList = userRepository.savedUser();
         }
