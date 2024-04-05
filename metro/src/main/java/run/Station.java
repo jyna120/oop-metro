@@ -43,19 +43,20 @@ public class Station {
 
         System.out.print("당신의 ID를 입력하세요 : ");
         int userId = sc.nextInt(); // 입력받은 사용자의 id
-        System.out.printf("> 당신의 이름은 %s, 나이는 %d, 카드는 %s", userList.get(userId).getName(), userList.get(userId).getAge(), userList.get(userId).getCard());
+        System.out.printf("> 당신의 이름은 %s, 나이는 %d, 카드는 ", userList.get(userId).getName(), userList.get(userId).getAge());
+
         switch(userList.get(userId).getCard()) {
             case "prepaid":
-                System.out.printf(", 잔액은 %d원 입니다.\n\n", userList.get(userId).getPrepaidCard().getBalance());
+                System.out.printf("선불카드, 잔액은 %d원 입니다.\n\n", userList.get(userId).getPrepaidCard().getBalance());
                 break;
             case "climate":
                 if(userList.get(userId).getClimateCard().getBegin() != null)
-                    System.out.printf(", 카드의 시작 날짜는 %s, 만료 날짜는 %s입니다.\n\n", userList.get(userId).getClimateCard().getBegin(), userList.get(userId).getClimateCard().getEnd());
+                    System.out.printf("기후동행카드, 카드의 시작 날짜는 %s, 만료 날짜는 %s입니다.\n\n", userList.get(userId).getClimateCard().getBegin(), userList.get(userId).getClimateCard().getEnd());
                 else
-                    System.out.println(", 유효하지 않은 카드입니다.\n");
+                    System.out.println("기후동행카드, 유효하지 않은 카드입니다.\n");
                 break;
             case "deferred":
-                System.out.println(" 입니다.\n");
+                System.out.println("후불카드 입니다.\n");
                 break;
         }
 //        if (userList.get(userId).getCard().equals("deferred")) {
