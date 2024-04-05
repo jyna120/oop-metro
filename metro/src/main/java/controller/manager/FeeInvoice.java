@@ -8,7 +8,7 @@ public class FeeInvoice {
     //탑승했을 때 출력하는 메소드 작성
     //-> 카드를 먼저 체크하고 나이에 따른 기본 요금 보여줌
     public void rideFare(Card card) { // 나이대 별 요금, 카드 종류, 잔액(or 누적 금액)
-        if(card.getPrice() != 0) { // 노약자 및 미취학아동 체크
+        if(card.getPrice() != 0) { // 노약자 체크
             switch(card.getCard()) {
                 case "deferred": // 신용카드로 탑승 시
                     balance = card.getDeferredCard().getExpense() + card.getPrice();
@@ -26,17 +26,16 @@ public class FeeInvoice {
                     System.out.println("> 승차에 실패했습니다. 다시 시도해주세요.");
                     return;
             }
-        }else {
-            return;
-        }
+        }else
+            System.out.println("👌노약자는 무료입니다.");
     }
 
     //하차했을 때 출력하는 메소드 작성
     //-> 카드 먼저 체크하고 나이에 해당하는 price, 이동 정거장 수, 환승 체크해서 계산
     public void surcharge(Card card, int stops, int transfer) { // 카드 종류, 나이대 별 요금, 이동 정거장 수, 환승
-        int overTransfer = transfer / 4;
+        int overTransfer = (transfer - 1) / 4;
         int plusPrice = card.getPrice() * overTransfer + (stops > 10 ? (stops - 10) / 4 : 0) * 50;
-        if(card.getPrice() != 0) { // 노약자 및 미취학아동 체크
+        if(card.getPrice() != 0) { // 노약자 체크
             switch(card.getCard()) {
                 case "deferred": // 신용카드로 하차 시
                     int addPrice = balance + plusPrice; // 누적 금액
@@ -60,20 +59,21 @@ public class FeeInvoice {
                     System.out.println("> 하차에 실패했습니다. 다시 시도해주세요.");
                     break;
             }
-        }else {
-            return;
-        }
+        }else
+            System.out.println("👌노약자는 무료입니다.👌");
     }
 
     public boolean checkBalance(Card card, int stops, int transfer) {
-        int overTransfer = transfer / 4;
+        int overTransfer = (transfer - 1) / 4;
         int plusPrice = card.getPrice() * overTransfer + (stops > 10 ? (stops - 10) / 4 : 0) * 50;
 
-        if(card.getPrice() != 0) { // 노약자 및 미취학아동 체크
-            int subPrice = balance - plusPrice; // 잔액
-            if(subPrice < 0) {
-                System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
-                return false;
+        if(card.getPrice() != 0) { // 노약자 체크
+            if(card.getCard().equals("prepaid")) {
+                int subPrice = balance - plusPrice; // 잔액
+                if(subPrice < 0) {
+                    System.out.println("> 잔액이 부족합니다. 충전 후 다시 이용해주세요.");
+                    return false;
+                }
             }
         }
         return true;
