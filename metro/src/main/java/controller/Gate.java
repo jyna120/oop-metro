@@ -104,7 +104,7 @@ public class Gate {
         switch (card.getCard()) {
             case "climate":
                 isChargedClimate = card.getClimateCard().getBegin() != null; // 기후동행카드를 충전한 상태라면 true
-                isValidity = ChronoUnit.DAYS.between(card.getClimateCard().getEnd(), now) < 0; // 기후동행카드 유효기간 만료 날짜가 오늘 이전이라면 true
+                isValidity = isChargedClimate && ChronoUnit.DAYS.between(card.getClimateCard().getEnd(), now)<0; // 기후동행카드 유효기간 만료 날짜가 오늘 이전이라면 true
                 if(!isChargedClimate || !isValidity) {
                     System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...\n");
                     return false;
