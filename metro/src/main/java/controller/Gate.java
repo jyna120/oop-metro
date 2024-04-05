@@ -56,7 +56,7 @@ public class Gate {
             countStop = sc.nextInt(); // 한 번 이동한 정거장 수
             System.out.println();
             stops += countStop; // 총 이동한 정거장 수 계산
-            System.out.println("> 이동 정거장 수 : " + stops + "\n");
+            System.out.println("> 🚇이동 정거장 누적 수 : " + stops + "🚇");
 
             boolean bool = feeInvoice.checkBalance(card, stops, transfer);
             if(bool) {
@@ -73,7 +73,7 @@ public class Gate {
 
                 if(transferYN == 'Y') {
                     transfer++; // 환승 한 번 할 때마다 환승 횟수 증가
-                    System.out.println("🔄환승 횟수 : " + transfer + "🔄");
+                    System.out.println("> 🔄환승 누적 횟수 : " + transfer + "🔄");
                     break;
                 }
                 else if(transferYN == 'N') {
@@ -103,7 +103,7 @@ public class Gate {
 
         switch (card.getCard()) {
             case "climate":
-                isChargedClimate = card.getClimateCard().isValid(); // 기후동행카드를 충전한 상태라면 true
+                isChargedClimate = card.getClimateCard().getBegin() != null; // 기후동행카드를 충전한 상태라면 true
                 isValidity = ChronoUnit.DAYS.between(card.getClimateCard().getEnd(), now) < 0; // 기후동행카드 유효기간 만료 날짜가 오늘 이전이라면 true
                 if(!isChargedClimate || !isValidity) {
                     System.out.println("> 기후동행카드를 충전하지 않았거나 유효 기간이 만료되었습니다. 충전하세요...\n");
