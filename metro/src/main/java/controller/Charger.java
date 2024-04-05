@@ -16,8 +16,9 @@ public class Charger {
                 """;
         System.out.println(info);
 
-        System.out.printf("> %s님의 카드는 %s 입니다.\n", card.getName(), card.getCard());
+        System.out.printf("> %s님의 카드는 ", card.getName());
         if (card.getCard().equals("climate")){ // 사용자의 카드가 기후동행카드라면,
+            System.out.println("기후동행카드 입니다.");
             card.getClimateCard().chargeClimate();
 //            userList.set(card.getUserId(), card);
             // Card 에 저장한 필드 ClimateCard 객체의 충전 메소드를 실행합니다.
@@ -25,6 +26,7 @@ public class Charger {
             System.out.println(card.getClimateCard() + "\n");
             // Card 에 저장한 필드 ClimateCard 객체의 toString()을 출력합니다.
         } else if (card.getCard().equals("deferred")) { // 사용자의 카드가 후불카드라면,
+            System.out.println("후불카드 입니다.");
             card.getDeferredCard().chargeDeferred();
 //            userList.set(card.getUserId(), card);
             // Card 에 저장한 필드 DeferrendCard 객체의 충전 메소드를 실행합니다.
@@ -32,6 +34,7 @@ public class Charger {
             System.out.println(card.getDeferredCard() + "\n");
             // Card 에 저장한 필드 DeferrendCard 객체의 toString()을 출력합니다.
         } else if (card.getCard().equals("prepaid")) {
+            System.out.println("선불카드 입니다.");
             card.getPrepaidCard().chargePrepaid();
 //            userList.set(card.getUserId(), card);
             // Card 에 저장한 필드 PrepaidCard 객체의 충전 메소드를 실행합니다.
